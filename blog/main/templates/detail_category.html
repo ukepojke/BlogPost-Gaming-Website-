@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ category.category }}
+{% endblock%}
+{% block content %}
+            <div class="row tm-row">
+                {% for i in venues %}
+                <article class="col-12 col-md-6 tm-post">
+                    <hr class="tm-hr-primary">
+                    <a href="/post/{{ i.id }}" class="effect-lily tm-post-link tm-pt-60">
+                        <div class="tm-post-link-inner">
+                            <img src="{{ i.image.url }}" alt="Image" class="img-fluid">
+                        </div>
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{i.name}}</h2>
+                    </a>                    
+                    <p class="tm-pt-30">
+                        {{ i.description|truncatechars:210 }}
+                    </p>
+                    <div class="d-flex justify-content-between tm-pt-45">
+                        <span class="tm-color-primary">{{ i.category }}</span>
+                        <span class="tm-color-primary">{{ i.created_date }}</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <span>36 comments</span>
+                        <span>by Admin Nat</span>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            <div class="row tm-row tm-mt-100 tm-mb-75">
+                <div class="tm-prev-next-wrapper">
+                    {% if venues.has_previous %}
+                    <a href="?page={{ venues.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20">Назад</a>
+                    {% else %}
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Назад</a>
+                    {% endif %}
+                    {% if venues.has_next %}
+                    <a href="?page={{ venues.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Вперед</a>
+                    {% else %}
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary disabled tm-prev-next">Вперед</a>
+                    {% endif %}
+                </div>
+                <div class=" tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Стр...</span>
+                    <nav class="tm-paging-nav d-inline-block">
+                        <ul>
+                            {% for i in nums %}
+                            <li class="tm-paging-item active">
+                                <a href="?page={{ forloop.counter }}" class=" mb-2 tm-btn tm-paging-link">{{ forloop.counter }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            {% endblock %}
