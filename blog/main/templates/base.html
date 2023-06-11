@@ -1,0 +1,71 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %} Новостной блог! {% endblock%}</title>
+	<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-xtra-blog.css' %}" rel="stylesheet">
+
+</head>
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <a href="https://www.youtube.com/watch?v=ZdLDq41hdns&list=RDZdLDq41hdns&index=1&ab_channel=%D0%93%D0%B5%D1%84%D0%B5%D1%81" target="_blank" rel="noopener noreferrer"><div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div></a>
+                <h1 class="text-center">Новости и блоги!</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">
+                <ul>
+                    <li class="tm-nav-item active"><a href="/" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Главная страница
+                    </a></li>
+                    <li class="tm-nav-item"><a href="/category/" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        Выбрать посты по категориям
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+        <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <div class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Искать..." aria-label="Search">
+                        <button class=" tm-search-button" type="submit">
+                            <a href="https://www.youtube.com/watch?v=xbDhbxMVMwI&list=RDZdLDq41hdns&index=5&ab_channel=SadSvit-Topic" target="_blank" rel="noopener noreferrer"><i class="fas fa-search tm-search-icon" aria-hidden="true"></i></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+{% block content %}
+{% endblock %}
+
+            <footer class="row tm-row">
+                <hr class="col-12">
+                <div class="col-md-6 col-12 tm-color-gray">
+                    Создано: <a rel="nofollow" target="_parent" href="https://www.instagram.com/ukeeeboy/" class="tm-external-link">Эрнест</a>
+                </div>
+                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
+                  <a href="https://www.youtube.com/shorts/1j3jdd-Lgkk">Фортинаит или Пабж?</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/templatemo-script.js' %}"></script>
+</body>
+</html>
