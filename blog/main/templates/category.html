@@ -6,7 +6,7 @@
 {% block content %}
 
             <div class="row tm-row">
-                {% for i in post_category %}
+                {% for i in venues %}
                 <article class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
                     <a href="/category/{{ i.id }}" class="effect-lily tm-post-link tm-pt-60">
@@ -17,28 +17,29 @@
                     </a>
                 </article>
                 {% endfor %}
-            </div>
+             </div>
             <div class="row tm-row tm-mt-100 tm-mb-75">
                 <div class="tm-prev-next-wrapper">
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    {% if venues.has_previous %}
+                    <a href="?page={{ venues.previous_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20">Назад</a>
+                    {% else %}
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Назад</a>
+                    {% endif %}
+                    {% if venues.has_next %}
+                    <a href="?page={{ venues.next_page_number }}" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Вперед</a>
+                    {% else %}
+                    <a href="#" class="mb-2 tm-btn tm-btn-primary disabled tm-prev-next">Вперед</a>
+                    {% endif %}
                 </div>
-                <div class="tm-paging-wrapper">
-                    <span class="d-inline-block mr-3">Page</span>
+                <div class=" tm-paging-wrapper">
+                    <span class="d-inline-block mr-3">Стр...</span>
                     <nav class="tm-paging-nav d-inline-block">
                         <ul>
+                            {% for i in nums %}
                             <li class="tm-paging-item active">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
+                                <a href="?page={{ forloop.counter }}" class=" mb-2 tm-btn tm-paging-link">{{ forloop.counter }}</a>
                             </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </nav>
                 </div>

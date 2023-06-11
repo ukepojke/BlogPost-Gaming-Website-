@@ -10,4 +10,5 @@ urlpatterns = [
     path('post/<int:id>',include('main.urls')),
     path('category/',include('main.urls')),
     path('category/<int:id>',include('main.urls')),
+    path('post/create/',include('main.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

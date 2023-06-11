@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.core.paginator import Paginator
@@ -26,7 +26,11 @@ def post_detail(re,id):
 
 def post_category(re):
     post_category = Category.objects.all()
-    return render(re,'category.html',{'post_category': post_category})
+    p = Paginator(post_category, 4)
+    page = re.GET.get('page')
+    venues = p.get_page(page)
+    nums = 'a' * venues.paginator.num_pages
+    return render(re,'category.html',{'post_category': post_category, 'venues': venues,'nums': nums})
 
 def detail_category(re,id):
     category_id = Category.objects.get(id=id)
@@ -36,4 +40,18 @@ def detail_category(re,id):
     venues = p.get_page(page)
     nums = 'a' * venues.paginator.num_pages
     return render(re,'detail_category.html',{'posts':posts,'category': category_id,'venues': venues,'nums': nums})
+
+def post_create(re):
+    form = PostForm()
+    if re.method == 'POST':
+        form = PostForm(data=re.POST,files=re.FILES)
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
+
+        return redirect('/')
+    form = PostForm()
+    return render(re,'post_create.html',{'form':form})
+
 

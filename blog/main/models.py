@@ -19,6 +19,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts/%Y/%m/%d/')
     created_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE,related_name='posts')
+    author = models.CharField(max_length=30)
 
 
     def __str__(self):
