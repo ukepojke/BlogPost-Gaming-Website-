@@ -23,8 +23,8 @@
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
-                        <span>36 comments</span>
-                        <span>by Admin Nat</span>
+                        <span>Кол-во комментариев: {{ i.comments.all.count }}</span>
+                        <span>Создан от: {{ i.author }}</span>
                     </div>
                 </article>
                 {% endfor %}
