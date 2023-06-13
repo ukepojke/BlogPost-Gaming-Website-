@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.core.paginator import Paginator
-from .filters import PostFilter
 
 
 def home(re):
@@ -11,10 +10,7 @@ def home(re):
     page = re.GET.get('page')
     venues = p.get_page(page)
     nums = 'a' * venues.paginator.num_pages
-    filter = PostFilter(re.GET,queryset=posts)
-    posts = filter.qs
-    form = PostFilter().form
-    return render(re,'index.html',{'posts': posts,'venues': venues,'nums': nums,'form':form})
+    return render(re,'index.html',{'posts': posts,'venues': venues,'nums': nums})
 
 def post_detail(re,id):
     post = Post.objects.get(id=id)
